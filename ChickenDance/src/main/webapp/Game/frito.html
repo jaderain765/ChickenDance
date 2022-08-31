@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: skyblue;
+}
+
+.warp {
+	width: 100vw;
+	height: 100vh;
+}
+
+.container1 {
+	width: 100%;
+	height: 35%;
+	top: 0;
+	position: relative;
+	z-index: 5;
+}
+
+.container2 {
+	width: 100%;
+	height: 65%;
+	top: 0;
+	position: relative;
+	z-index: 1;
+}
+
+.danceGame {
+	position: absolute;
+	height: 100px;
+	width: 815px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.fritoimg {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin-top: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.arrowImg {
+	width: 75px;
+	height: 75px;
+}
+
+.score {
+	position: absolute;
+	width: 260px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin-top: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+scoreStyle1 {
+	font-family: '돋움';
+	font-size: 2em;
+}
+
+scoreStyle2 {
+	font-family: '맑은 고딕';
+	font-size: 2em;
+	font-weight: 600;
+	color: #FFBB00;
+}
+
+scoreTime1 {
+	font-family: '돋움';
+	font-size: 2em;
+	float: right;
+}
+
+scoreTime2 {
+	font-family: '맑은 고딕';
+	font-size: 2em;
+	font-weight: 600;
+	color: #FF5E00;
+	float: right;
+}
+</style>
+<script type="text/javascript">
+	var image = [
+			[ "../source/image/left.png", "../source/image/left2.png",
+					"../source/image/left_.png" ],
+			[ "../source/image/up.png", "../source/image/up2.png",
+					"../source/image/up_.png" ],
+			[ "../source/image/right.png", "../source/image/right2.png",
+					"../source/image/right_.png", ],
+			[ "../source/image/down.png", "../source/image/down2.png",
+					"../source/image/down_.png" ] ];
+
+	var arrow = [ [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
+			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ];
+
+	var index = 0;
+
+	const time = 0;
+	const maxtime = 0;
+
+	function score() {
+
+	}
+
+	function displayImage(src, alt) {
+		var a = document.createElement("img");
+		a.src = src;
+		a.alt = "" + alt;
+		a.height = 100;
+		a.width = 100;
+		document.body.appendChild(a);
+	}
+
+	function randomSet() {
+		for (var i = 0; i < arrow[0].length; i++) {
+			arrow[0][i] = randomNum();
+			arrow[1][i] = 0;
+		}
+	}
+
+	function randomNum() {
+		return Math.floor(Math.random() * 4);
+	}
+
+	function printImage(i) {
+		document.getElementById("arrow_" + i).src = image[arrow[0][i]][arrow[1][i]];
+	}
+
+	function setGame() {
+		index = 0;
+		randomSet();
+		for (var i = 0; i < arrow[0].length; i++) {
+			printImage(i);
+		}
+	}
+
+	//키입력부
+	document.addEventListener("keydown", checkKeyPressed, false);
+
+	function checkKeyPressed(e) {
+
+		if (e.keyCode == 37) {
+			isColl(0);
+		}
+		if (e.keyCode == 38) {
+			isColl(1);
+		}
+		if (e.keyCode == 39) {
+			isColl(2);
+		}
+		if (e.keyCode == 40) {
+			isColl(3);
+		}
+	}
+
+	function isColl(num) {
+		if (arrow[0][index] == num) {
+			arrow[1][index] = 1;
+			printImage(index);
+			index++;
+			if (index == arrow[0].length) {
+				setTimeout(function() {
+					setGame();
+				}, 300);
+			}
+		} else {
+			for (; index < arrow[0].length; index++) {
+				arrow[1][index] = 2;
+				printImage(index);
+			}
+			setTimeout(function() {
+				for (var n = 0; n < arrow[0].length; n++) {
+					arrow[1][n] = 0;
+					printImage(n);
+				}
+				index = 0;
+			}, 300);
+		}
+	}
+
+	function keyDown(e) {
+
+	}
+
+	/* window.addEventListener("keydown", e => {
+		if (e.key == 37){
+			document.write("left")
+		}
+		if (e.key == 38){
+			document.write("up")
+		}
+		if (e.key == 39){
+			document.write("right")
+		}
+		if (e.key == 40){
+			document.write("down")
+		}
+	}); */
+</script>
+<meta charset="UTF-8">
+<title>프리토 닭춤 연습</title>
+</head>
+<body>
+	<div class="warp">
+		<div class="container1">
+			<div class="danceGame">
+				<img id="arrow_0" class="arrowImg"> <img id="arrow_1"
+					class="arrowImg"> <img id="arrow_2" class="arrowImg"> <img
+					id="arrow_3" class="arrowImg"> <img id="arrow_4"
+					class="arrowImg"> <img id="arrow_5" class="arrowImg"> <img
+					id="arrow_6" class="arrowImg"> <img id="arrow_7"
+					class="arrowImg"> <img id="arrow_8" class="arrowImg"> <img
+					id="arrow_9" class="arrowImg">
+			</div>
+			<!-- 
+			<div class="score">
+				<scoreStyle1>걸린시간 : </scoreStyle1><scoreTime1>
+				기능제작중
+				</scoreTime1>
+				<br>
+				<scoreStyle2>최대기록 : </scoreStyle2><scoreTime2>
+				기능제작중
+				</scoreTime2>
+			</div>
+			 -->
+		</div>
+
+		<div class="container2">
+			<img class="fritoimg" src="../source/image/그림1.png">
+		</div>
+	</div>
+	<script type="text/javascript">
+		setGame();
+	</script>
+</body>
+</html>

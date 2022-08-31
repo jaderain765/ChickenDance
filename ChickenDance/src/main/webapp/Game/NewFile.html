@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>test</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .warp{
+            width: 100vw;
+            height: 100vh;
+        }
+        .aaa{
+            width: 100%;
+            height: 25%;
+            background-color: rebeccapurple;
+            top: 0;
+            position:relative;
+        }
+        .bbb{
+            width: 100%;
+            height: 75%;
+            background-color: blanchedalmond;
+            top: 0;
+            position:relative;
+        }
+        .item{
+            width: 200px;
+            height: 150px;
+            background-color: black;
+            
+        }
+        .center{
+            position: absolute;
+
+            height:100px; top: 0; bottom:0; margin-top:auto; margin-bottom:auto;
+            width:200px; left:0; right:0; margin-left:auto; margin-right:auto;
+        }
+        .botton{
+            position: absolute;
+
+            height:100px; top: 0; bottom:0; margin-top:auto; margin-bottom: 0;
+            width:200px; left:0; right:0; margin-left:auto; margin-right:auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warp">
+        <div class="aaa">
+            <div class="item center"></div>
+        </div>
+        <div class="bbb">
+            <div class="item botton"></div>
+        </div>
+    </div>
+</body>
+
+</html>
