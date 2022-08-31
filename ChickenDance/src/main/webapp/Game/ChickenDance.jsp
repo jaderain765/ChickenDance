@@ -133,7 +133,7 @@ scoreTime2{
 			count++;
 		}
 		if(sum + count == 0) return "기록없음";
-		return (sum/count)/1000;
+		return ((sum/count)/1000).toFixed(2);
 	}
 	
 	// 정확도 계산(모든 시도횟수를 더해서 10으로 나눈것(안틀릴경우 10/10 으로 100%)) 
@@ -145,7 +145,8 @@ scoreTime2{
 			sum += typo[i];
 			count++;
 		}
-		return count/sum * 100;
+		if(sum + count == 0) return 0;
+		return (count/sum * 100).toFixed(2);
 	}
 
 	function displayImage(src, alt) {
@@ -173,7 +174,7 @@ scoreTime2{
 	}
 	
 	function setGame(){
-		document.getElementById("recode").innerHTML = recodeAvg();
+		document.getElementById("recode").innerHTML = recodeAvg()+"'s";
 		lap++;
 		document.getElementById("lap").innerHTML = lap;
 		index = 0;
@@ -204,10 +205,9 @@ scoreTime2{
 	}
 	
 	function isColl(num){
-		//첫 시도일 경우 시간기록과 시도 횟수 증가
+		//첫 시도일 경우
 		if(time == 0){
-			typo[lap % typo.length] = 1; //첫시도
-			document.getElementById("typo").innerHTML = typoAvg()+"%";
+			typo[lap % typo.length] = 0; //초기화
 			time = new Date().getTime();
 		}
 		
@@ -218,6 +218,8 @@ scoreTime2{
 			index++;
 			// 끝까지 다쳤을 때
 			if(index == arrow[0].length){
+				typo[lap % typo.length]++;
+				document.getElementById("typo").innerHTML = typoAvg()+"%";
 				// 시간 기록
 				time = new Date().getTime() - time;
 				recode[lap % recode.length] = time;
@@ -236,9 +238,11 @@ scoreTime2{
 		}
 		// 틀렸을 때
 		else{
-			typo[lap % typo.length]++; //시도횟수 증가
-			
+			typo[(lap - 1) % typo.length]++; //시도횟수 증가
 			document.getElementById("typo").innerHTML = typoAvg()+"%";
+			
+			if(lap == 1)
+				document.getElementById("typo").innerHTML = "0 %";
 			
 			for(; index < arrow[0].length; index++){
 				arrow[1][index] = 2;
@@ -266,8 +270,8 @@ scoreTime2{
 	<div class="warp">
 		<div class="container1">
 			<p><lap id="lap">0</lap> lap</p>
-			<p><recode id="recode">0</recode> 평균시간</p>
-			<p><typo id="typo">0</typo> 정확도</p>
+			<p>평균시간 <recode id="recode">(기록없음)</recode></p>
+			<p>정확도 <typo id="typo">(기록없음)</typo></p>
 			
 			<div class="danceGame">
 			 <img id="arrow_0" class="arrowImg">
