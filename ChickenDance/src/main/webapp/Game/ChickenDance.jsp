@@ -13,6 +13,12 @@ body{
 	background: skyblue;
     height: 100%;
     overflow: hidden;
+    
+    background-image: url(../source/image/헤네시스.png);
+    background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center bottom;
 }
 .warp{
 	width: 100vw;
@@ -31,11 +37,12 @@ body{
 	top: 0;
 	position:relative;
 	z-index: 1;
-	/*  */
+	/* 
 	background-image: url(../source/image/그림1.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center bottom;
+	 */
 }
 .danceGame{
 	position: absolute;
@@ -69,7 +76,7 @@ body{
 .score{
 	position: absolute;
 	width: 300px;
-	height:150px;
+	height:120px;
 	top: 0;
 	bottom:0;
 	left:0;
@@ -82,6 +89,7 @@ body{
 scoreStyle1{
 	font-family: '돋움';
 	font-size: 2em;
+	color: white;
 }
 scoreStyle2{
 	font-family: '맑은 고딕';
@@ -93,6 +101,7 @@ scoreTime1{
 	font-family: '돋움';
 	font-size: 2em;
 	float: right;
+	color: white;
 }
 scoreTime2{
 	font-family: '맑은 고딕';
@@ -295,9 +304,6 @@ scoreTime2{
 				<scoreStyle2>최대기록 : </scoreStyle2>
 				<scoreTime2 id="highrecord"></scoreTime2>
 			</div>
-			<!-- 
-				<img class="fritoimg" src="../source/image/그림1.png">
-			 -->
 		</div>
 	</div>
 	<script type="text/javascript">
