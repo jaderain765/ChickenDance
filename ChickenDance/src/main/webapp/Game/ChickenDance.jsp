@@ -119,7 +119,7 @@ scoreTime2{
 			[ "../source/image/up.png", "../source/image/up2.png", "../source/image/up_.png" ],
 			[ "../source/image/right.png", "../source/image/right2.png", "../source/image/right_.png", ],
 			[ "../source/image/down.png", "../source/image/down2.png", "../source/image/down_.png" ]];
-
+	//화살관련 변수
 	var arrow = [ [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
 			[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ];
 	
@@ -157,7 +157,8 @@ scoreTime2{
 		if(sum + count == 0) return 0;
 		return (count/sum * 100).toFixed(2);
 	}
-
+	
+	//이미지를띄우는 메서드
 	function displayImage(src, alt) {
 		var a = document.createElement("img");
 		a.src = src;
